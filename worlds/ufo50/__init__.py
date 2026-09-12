@@ -13,12 +13,13 @@ from . import options
 
 from .general_items import cartridge_items, cartridge_item_group
 
-from .games import barbuta, porgy, vainger, night_manor, party_house
+from .games import barbuta, porgy, vainger, night_manor, party_house, divers
 from .games.barbuta import items, locations, regions
 from .games.porgy import items, locations, regions
 from .games.vainger import items, locations, regions
 from .games.night_manor import items, locations, regions
 from .games.party_house import items, locations, regions
+from .games.divers import items, locations, regions
 
 
 def launch_client(*args: str):
@@ -89,6 +90,7 @@ ufo50_games: dict = {
     "Vainger": vainger,
     "Night Manor": night_manor,
     "Party House": party_house,
+    "Divers": divers,
 }
 
 allowable_unimplemented: set[str] = {"Ninpek", "Magic Garden", "Velgress", "Waldorf's Journey"}
@@ -167,6 +169,7 @@ class UFO50World(World):
                 self.options.porgy_check_on_touch.value = self.ut_passthrough[options.PorgyCheckOnTouch.internal_name]
                 self.options.porgy_radar.value = self.ut_passthrough[options.PorgyRadar.internal_name]
                 self.options.porgy_lanternless.value = self.ut_passthrough[options.PorgyLanternless.internal_name]
+                self.options.divers_lever_check.value = self.ut_passthrough[options.DiversLeverCheck.internal_name]
 
         included_game_names = sorted(self.options.always_on_games.value)
         # exclude always on games from random choice games
@@ -340,6 +343,7 @@ class UFO50World(World):
             options.PorgyCheckOnTouch.internal_name: self.options.porgy_check_on_touch.value,
             options.PorgyRadar.internal_name: self.options.porgy_radar.value,
             options.PorgyLanternless.internal_name: self.options.porgy_lanternless.value,
+            options.DiversLeverCheck.internal_name: self.options.divers_lever_check.value,
         }
         return slot_data
 
